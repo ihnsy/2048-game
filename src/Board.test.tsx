@@ -1,4 +1,4 @@
-import { describe,expect, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 
 import { initArr } from '@/Board.tsx'; // 경로는 프로젝트 구조에 맞게 수정
 

@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2023",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "moduleResolution": "bundler",
@@ -23,15 +19,8 @@
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
-  "include": [
-    "src",
-    "src/*.test.ts",
-    "src/*.test.tsx",
-    "vite.config.ts"
-  ]
+  "include": ["src", "src/*.test.ts", "src/*.test.tsx", "vite.config.ts"]
 }

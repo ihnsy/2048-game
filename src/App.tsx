@@ -2,7 +2,7 @@ import '@/tailwind.css';
 
 import { useEffect, useState } from 'react';
 
-import {initArr} from '@/Board'
+import { initArr } from '@/Board';
 
 type BoxProps = {
   value: number | null | undefined;

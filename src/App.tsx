@@ -1,4 +1,4 @@
-import './App.css';
+import '@/tailwind.css'
 
 import { useEffect, useState } from 'react';
 
@@ -10,35 +10,37 @@ type RowProps = {
   values: (number | null | undefined)[] | undefined;
 };
 
-function Box({ value }: BoxProps) {
-  return <div className="box">{value}</div>;
+const Box = ({ value }: BoxProps) => {
+  return <div className="flex text-3xl font-bold w-[100px] h-[100px] border-solid border-[3px] border-[#000000] bg-[#C4C4C4] justify-center items-center rounded-3xl">
+    {value}</div>;
 }
 
-function Row({ values }: RowProps) {
+const Row = ({ values }: RowProps) => {
   if (values !== undefined)
     return (
-      <div className="row">
+      <div className="flex flex-row gap-[2px] mb-[2px]">
         <Box value={values[0]} /> <Box value={values[1]} />{' '}
         <Box value={values[2]} /> <Box value={values[3]} />
       </div>
     );
 }
 
-function Board() {
+const Board = () => {
   const [score, setScore] = useState(0);
   const i1 = Math.floor(Math.random() * 4);
   const j1 = Math.floor(Math.random() * 4);
-  let it, jt;
-  do {
-    it = Math.floor(Math.random() * 4);
-    jt = Math.floor(Math.random() * 4);
-  } while (it === i1 && jt === j1);
-  const i2 = it,
-    j2 = jt;
+  const [i2, j2] = (() => {
+    let x, y;
+    do {
+      x = Math.floor(Math.random() * 4);
+      y = Math.floor(Math.random() * 4);
+    } while (x === i1 && y === j1);
+    return [x, y];
+  })();
 
   const randomValue1 = Math.random() < 0.9 ? 2 : 4;
   const randomValue2 = Math.random() < 0.9 ? 2 : 4;
-  const initArr: (number | null | undefined)[][] = [
+  const initArr: (number | null)[][] = [
     [null, null, null, null],
     [null, null, null, null],
     [null, null, null, null],
@@ -197,20 +199,22 @@ function Board() {
   }, [arr, score]);
 
   return (
-    <div className="screen">
-      <div className="score">Score: {score}</div>
-      <div className="board">
+    <div className="h-100dvh flex flex-col justify-center items-center font-pretendard-light">
+      <div className="text-2xl font-bold text-[rgb(78, 50, 50)] my-[20px]">
+        Score: {score}</div>
+      <div>
         <Row values={arr[0]} /> <Row values={arr[1]} /> <Row values={arr[2]} />{' '}
         <Row values={arr[3]} />
       </div>
       {isGameOver && (
-        <div className="gameover">{has128 ? 'You Win!' : 'Game Over'}</div>
+        <div className="animate-fadeIn fixed top-0 left-0 w-full h-full bg-[rgba(238,228,218,0.8)] flex items-center justify-center text-2xl font-bold text-[rgb(78,50,50)] rounded-lg z-10">
+          {has128 ? 'You Win!' : 'Game Over'}</div>
       )}
     </div>
   );
 }
 
-function App() {
+const App = () => {
   return (
     <div>
       <Board />

@@ -1,4 +1,4 @@
-import '@/tailwind.css'
+import '@/tailwind.css';
 
 import { useEffect, useState } from 'react';
 
@@ -11,9 +11,12 @@ type RowProps = {
 };
 
 const Box = ({ value }: BoxProps) => {
-  return <div className="flex text-3xl font-bold w-[100px] h-[100px] border-solid border-[3px] border-[#000000] bg-[#C4C4C4] justify-center items-center rounded-3xl">
-    {value}</div>;
-}
+  return (
+    <div className="flex text-3xl font-bold w-[100px] h-[100px] border-solid border-[3px] border-[#000000] bg-[#C4C4C4] justify-center items-center rounded-3xl">
+      {value}
+    </div>
+  );
+};
 
 const Row = ({ values }: RowProps) => {
   if (values !== undefined)
@@ -23,7 +26,7 @@ const Row = ({ values }: RowProps) => {
         <Box value={values[2]} /> <Box value={values[3]} />
       </div>
     );
-}
+};
 
 const Board = () => {
   const [score, setScore] = useState(0);
@@ -201,18 +204,20 @@ const Board = () => {
   return (
     <div className="h-100dvh flex flex-col justify-center items-center font-pretendard-light">
       <div className="text-2xl font-bold text-[rgb(78, 50, 50)] my-[20px]">
-        Score: {score}</div>
+        Score: {score}
+      </div>
       <div>
         <Row values={arr[0]} /> <Row values={arr[1]} /> <Row values={arr[2]} />{' '}
         <Row values={arr[3]} />
       </div>
       {isGameOver && (
         <div className="animate-fadeIn fixed top-0 left-0 w-full h-full bg-[rgba(238,228,218,0.8)] flex items-center justify-center text-2xl font-bold text-[rgb(78,50,50)] rounded-lg z-10">
-          {has128 ? 'You Win!' : 'Game Over'}</div>
+          {has128 ? 'You Win!' : 'Game Over'}
+        </div>
       )}
     </div>
   );
-}
+};
 
 const App = () => {
   return (
@@ -220,6 +225,6 @@ const App = () => {
       <Board />
     </div>
   );
-}
+};
 
 export default App;

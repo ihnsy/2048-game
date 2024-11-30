@@ -2,6 +2,8 @@ import '@/tailwind.css';
 
 import { useEffect, useState } from 'react';
 
+import { initArr } from '@/Board';
+
 type BoxProps = {
   value: number | null | undefined;
 };
@@ -30,28 +32,6 @@ const Row = ({ values }: RowProps) => {
 
 const Board = () => {
   const [score, setScore] = useState(0);
-  const i1 = Math.floor(Math.random() * 4);
-  const j1 = Math.floor(Math.random() * 4);
-  const [i2, j2] = (() => {
-    let x, y;
-    do {
-      x = Math.floor(Math.random() * 4);
-      y = Math.floor(Math.random() * 4);
-    } while (x === i1 && y === j1);
-    return [x, y];
-  })();
-
-  const randomValue1 = Math.random() < 0.9 ? 2 : 4;
-  const randomValue2 = Math.random() < 0.9 ? 2 : 4;
-  const initArr: (number | null)[][] = [
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null],
-    [null, null, null, null],
-  ];
-  if (initArr[i1] !== undefined) initArr[i1][j1] = randomValue1;
-  if (initArr[i2] !== undefined) initArr[i2][j2] = randomValue2;
-
   const [arr, setArr] = useState<(number | null | undefined)[][]>(initArr);
   const [isGameOver, setIsGameOver] = useState(false);
   const [has128, setHas128] = useState(false);
